@@ -10,33 +10,31 @@
 </head>
 
 <body>
-    <div id="user"><h1>님 안녕하세요.</h1></div>
-    <button>장바구니</button> <button onclick="orderlist.html">구매목록</button>
+    <h1>ㅇㅇㅇ님 안녕하세요.</h1>
+    <button onclick="order.html">장바구니</button><button>구매목록</button>
 
     <main>
         <ul>
-          <li class="item item-heading"></li>
+          <li class="item item-heading">Item</li> @왜 내가 적는순서대로 안가는거지? 
           <li class="size">Size</li>
-          <li class="mount">Mount</li>
+          <li class="quantity">Quantity</li> 
           <li class="price">Price</li>
         </ul>
-        <hr>
+      </div>
       <div class="basket-product">
         <div class="item">
           <div class="product-image">
-            <img src="pocachip.JPG" alt="이미지" class="product-frame">
+            <img src="{이미지 받아오기}" alt="Placholder Image 2" class="product-frame">
           </div>
         </div>
-        <div class="size" id="size"></div>
-        <div class="mount" id="mount"></div>
-        <div class="price" id="price"></div>
+        <div class="size">{사이즈}</div>
+        <div class="price">{5000}</div>
+        <div class="quantity">{수량}</div>
+        <div class="remove">
+          <button>Remove</button>
+        </div>
       </div>
-      <hr>
-    
-
-
-
-      <!-- <div class="basket-product">
+      <div class="basket-product">
         <div class="item">
           <div class="product-image">
             <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
@@ -56,9 +54,8 @@
           <button>Remove</button>
         </div>
       </div>
-    </div> -->
+    </div>
   </main>
-  <button class="orderbutton">order</button>
 </body>
 
 </html>
