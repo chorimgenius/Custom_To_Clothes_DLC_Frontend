@@ -3,7 +3,6 @@ window.onload= () => {
   const payload = localStorage.getItem("payload");
   const payload_parse = JSON.parse(payload)
   const username= payload_parse.username
-  console.log(username)
 
   const intro = document.getElementById("intro")
   intro.innerText=payload_parse.username
@@ -17,9 +16,7 @@ async function OrderList(){
           "Authorization" : localStorage.getItem("access")
         } 
     })
-    console.log(response)
     const data = await response.json();
-    console.log(data)
     
     const orderlist = document.getElementById("basket-product")
     data.forEach(element => { 
