@@ -4,9 +4,194 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link href="static/css/clothes_profile.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
 </head>
 <body>
+    <div class="container" id="draft-container">
+        <h1>Draft</h1>
+    
+        <div class="gallery-wrap">
+            <div class="item item-1" id="draft-id1"onclick="select_draft(1)"></div>
+            <div class="item item-2" id="draft-id2"onclick="select_draft(2)"></div>
+            <div class="item item-3" id="draft-id3"onclick="select_draft(3)"></div>
+        </div>
+    </div>
+
+    <div class="container" id="style-container" style="display:none">
+        <h1>Style</h1>
+        <div>
+          <input type="file" class="image-upload" accept="image/*" />
+        </div>
+        <div class="gallery-wrap">
+            <div class="item item-1" id="style-id1" onclick="select_style(1)"></div>
+            <div class="item item-2" id="style-id2" onclick="select_style(2)"></div>
+            <div class="item item-3" id="style-id3" onclick="select_style(3)"></div>
+            <div class="item item-4" id="style-id4" onclick="select_style(4)"></div>
+            <div class="item item-5" id="style-id5" onclick="select_style(5)"></div>
+            <div class="item item-1" id="style-id6" onclick="select_style(6)"></div>
+            <div class="item item-2" id="style-id7" onclick="select_style(7)"></div>
+            <div class="item item-3" id="style-id8" onclick="select_style(8)"></div>
+            <div class="item item-4" id="style-id9" onclick="select_style(9)"></div>
+            <div class="item item-5" id="style-id10" onclick="select_style(10)"></div>
+        </div>
+    </div>
+    <div class="container" id="selected-container" style="display:none;">
+      <h1>Create</h1>
+      <div class="gallery-wrap">
+          <div class="item item-1" id = "draft-selected" onclick="re_post_article()"></div>
+          <div class="item item-2" id = "style-selected" onclick="re_post_article()"></div>
+      </div>
+      <button type="button" id="create-article" onclick="post_article()">만들기</button>
+      <button type="button" id="put-article" onclick="put_article()" style="display:none;">다시만들기</button>
+    </div>
+    <div class="container" id="result-container" style="display:none">
+      <h1>Result</h1>
+      <div class="gallery-wrap" style="justify-content: center;">
+          <div class="item-result item-1" id = "result-image"></div>
+      </div>
+      <button type="button" onclick="re_post_article()">다시만들기</button>
+      <button type="button">주문하러 가기</button>
+    </div>
     
 </body>
 </html>
+<script>
+  let draft_list =[]
+  let style_list =[]
+  window.onload = async function loadDesign(){
+
+    const response = await fetch('http://127.0.0.1:8000/article/',{
+        method:'GET',
+    })
+    response_json = await response.json()
+
+    add_image(response_json[0],'draft-id',draft_list)
+    add_image(response_json[1],'style-id',style_list)
+
+    function add_image(json_data_list,container,list_){
+        json_data_list.forEach(element => {
+          draft_id = document.getElementById(container+element.id)
+          draft_id.style.backgroundImage = 'url(http://127.0.0.1:8000'+ element.image +')'
+          list_.push({'id':element.id, 'image':'http://127.0.0.1:8000'+element.image})
+        });
+    }
+  }
+  function all_close(){ // 모든 컨테이너 닫기
+    let container_all = document.querySelectorAll('.container')
+    container_all.forEach(element => {
+      element.style.display = 'none'
+    })
+  }
+
+  let selected_draft_id = 0
+  let selected_style_id = 0
+  let selected_article_id = 0
+  let file =''
+  function select_draft(id){
+    all_close()
+    $('#style-container').show()
+    selected_draft_id = id
+    result_draft = document.getElementById('draft-selected')
+    result_draft.style.backgroundImage = 'url('+ draft_list[id-1].image+')'
+    if(selected_article_id>0){
+      $('#create-article').hide()
+      $('#put-article').show()
+
+    }
+  }
+  function select_style(id){
+    all_close()
+    $('#selected-container').show()
+    selected_style_id = id
+    result_style = document.getElementById('style-selected')
+    result_style.style.backgroundImage = 'url('+ style_list[id-1].image+')'
+  }
+  // image 등록시
+  let uploadField = document.querySelector('.image-upload');
+  uploadField.addEventListener('change', getFile);
+  function getFile(e){
+    file = e.currentTarget.files[0];
+    checkType(file);
+  }
+  function checkType(file){
+    let imageType = /image.*/;
+    if (!file.type.match(imageType)) {
+      throw 'Datei ist kein Bild';
+    } else if (!file){
+      throw 'Kein Bild gewählt';
+    } else {
+      previewImage(file);
+    }
+  }
+  function previewImage(file){
+    let thumb = document.getElementById('style-selected'),
+        reader = new FileReader();
+
+    reader.onload = function() {
+      thumb.style.backgroundImage = 'url(' + reader.result + ')';
+    }
+    reader.readAsDataURL(file);
+    all_close()
+    $('#selected-container').show()
+  }
+
+  // post article
+  async function post_article(){
+    const form_data = new FormData();
+    form_data.append('draft',selected_draft_id)
+    form_data.append('style_id',selected_style_id)
+    form_data.append('image',file)
+    const response = await fetch(`http://127.0.0.1:8000/article/`, {
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5Nzg1MTgzLCJpYXQiOjE2Njk0MjUxODMsImp0aSI6IjhlYzk3MzAxYmY5NTQ2MGFiM2MxYTFmZDY4ZTA4ZGVlIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.BZilvXxhqrUDyRlW0R-jQ5tlUiwfuzM2mFf70HRltn8'
+        },
+        method: 'POST',
+        body: form_data
+    })
+    response_json = await response.json()
+    selected_article_id = response_json.id
+    console.log(11,response_json.id)
+    result_image = document.getElementById('result-image')
+    result_image.style.backgroundImage = 'url(http://127.0.0.1:8000'+ response_json.image+')'
+    all_close()
+    $('#result-container').show()
+  }
+
+  function re_post_article(){
+    file = ''
+    selected_draft_id = 0
+    selected_style_id = 0
+    all_close()
+    $('#draft-container').show()
+  }
+  async function put_article(){
+    const form_data = new FormData();
+    form_data.append('draft',selected_draft_id)
+    form_data.append('style_id',selected_style_id)
+    form_data.append('image',file)
+    form_data.append('id',selected_article_id)
+    const response = await fetch(`http://127.0.0.1:8000/article/`, {
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5Nzg1MTgzLCJpYXQiOjE2Njk0MjUxODMsImp0aSI6IjhlYzk3MzAxYmY5NTQ2MGFiM2MxYTFmZDY4ZTA4ZGVlIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.BZilvXxhqrUDyRlW0R-jQ5tlUiwfuzM2mFf70HRltn8'
+        },
+        method: 'PUT',
+        body: form_data
+    })
+    response_json = await response.json()
+    selected_article_id = response_json.id
+    console.log(22,response_json.id)
+    result_image = document.getElementById('result-image')
+    result_image.style.backgroundImage = 'url(http://127.0.0.1:8000'+ response_json.image+')'
+    all_close()
+    $('#result-container').show()
+  }
+</script>
