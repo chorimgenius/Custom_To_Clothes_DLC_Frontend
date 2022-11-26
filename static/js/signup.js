@@ -19,7 +19,6 @@ async function handleSignup(){
 			"email":email
 		})
 	})
-	console.log(response_json = await response.json())
 	location.href = "signup.html";
 }
 //Signin
@@ -40,7 +39,6 @@ async function handleSignin(){
 	
 	const response_json = await response.json()
 
-	console.log(response_json)
 
 	localStorage.setItem("access", "Bearer "+response_json.access);
 	localStorage.setItem("refresh", response_json.refresh);

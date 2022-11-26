@@ -5,26 +5,24 @@ window.onload = async function loadArticles() {
     const urlStr = window.location.href;
     const url = new URL(urlStr);
     const urlParms = url.searchParams;
-    console.log(urlParms)
     const id = urlParms.get('id')
     const response = await fetch(`${backend_base_url}order/` + parseInt(id) + '/', {
         method: 'GET'
     })
     response_json = await response.json()
     const product_image = document.getElementById('product_image')
-    product_image.src = `${backend_base_url}` + response_json.image
+    product_image.src = `${backend_base_url}` + response_json.image.slice(1);
 }
 
 async function postsize(){
     const urlStr = window.location.href;
     const url = new URL(urlStr);
     const urlParms = url.searchParams;
-    console.log(urlParms)
     const id = urlParms.get('id')
     const size_size = document.getElementById('size').value
     const size_mount = document.getElementById('mount').value
 
-    await fetch(`${backend_base_url}/order/` + parseInt(id) + '/', {
+    await fetch(`${backend_base_url}order/` + parseInt(id) + '/', {
         method: 'POST',
         headers: {
             "Authorization" : localStorage.getItem("access"),

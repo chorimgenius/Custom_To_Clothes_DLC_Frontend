@@ -20,7 +20,6 @@ async function MainPage(){
     response_json = await response.json()
     const img = document.getElementById('container')
     response_json.forEach(element => {
-        console.log(element)
         const image = ` <div class="item">
                             <div class ="like">
                                 ${element.likes_count} likes
@@ -29,4 +28,12 @@ async function MainPage(){
                         </div>`
         img.insertAdjacentHTML("beforeend",image)
     });
+}
+
+async function handleLogout(){
+	localStorage.removeItem("access")
+	localStorage.removeItem("refresh")
+	localStorage.removeItem("payload")
+	alert("로그아웃되었습니다.")
+	location.href = "signup.html"
 }

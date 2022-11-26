@@ -18,12 +18,9 @@ async function ProfilePage(){
         }
     })
     response_json = await response.json()
-    console.log(response_json)
     const img = document.getElementById('container')
-    console.log(img)
 
     response_json.forEach(element => {
-        console.log(element)
         const image = ` <div class="item">
                             <img class="image" src="http://127.0.0.1:8000${element.image}">
                         </div>`
