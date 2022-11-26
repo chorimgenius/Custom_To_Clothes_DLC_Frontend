@@ -60,14 +60,13 @@ img,
   width: 100%;
 }
 
-input,
 button,
 .basket,
 .basket-module,
 .basket-labels,
 .item,
 .size,
-.quantity,
+.mount,
 .price,
 .basket-product,
 .product-image,
@@ -86,22 +85,6 @@ main {
   overflow: hidden;
   padding: 1rem 0;
   width: 960px;
-}
-
-.basket,
-aside {
-  padding: 0 1rem;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.basket {
-  width: 70%;
-}
-
-.basket-module {
-  color: #111;
 }
 
 label {
@@ -157,27 +140,23 @@ li.size:before {
 }
 
 .item {
-  width: 40%;
+  width: 30%;
 }
 
 .size,
-.quantity,
-.price {
+.mount{
   width: 20%;
 }
-
-
-.item-heading {
-  padding-left: 4.375rem;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.price {
+  width: 20%;
+  margin-left: 30px;
 }
 
 .basket-product {
   border-bottom: 1px solid #ccc;
   padding: 1rem 0;
   position: relative;
+
 }
 
 .product-image {
@@ -192,77 +171,9 @@ li.size:before {
   border: 1px solid #aaa;
 }
 
-.product-details {
-  padding: 0 1.5rem;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.quantity-field {
-  background-color: #ccc;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  font-size: 0.625rem;
-  padding: 2px;
-  width: 3.75rem;
-}
-
-aside {
-  float: right;
-  position: relative;
-  width: 30%;
-}
-
-
-.promo-title {
-  float: left;
-  width: 70%;
-}
-
-.promo-value {
-  color: #8B0000;
-  float: left;
-  text-align: right;
-  width: 30%;
-}
-
-.summary-delivery {
-  padding-bottom: 3rem;
-}
-
 .size-value,
 .total-value {
   text-align: right;
-}
-
-.total-title {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.summary-checkout {
-  display: block;
-}
-
-.checkout-cta {
-  display: block;
-  float: none;
-  font-size: 0.75rem;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 0.625rem 0;
-  width: 100%;
-}
-
-.summary-delivery-selection {
-  background-color: #ccc;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  display: block;
-  font-size: 0.625rem;
-  height: 34px;
-  width: 100%;
 }
 
 @media screen and (max-width: 640px) {
@@ -286,41 +197,12 @@ aside {
     width: 40%;
   }
   .product-details {
-    width: 60%;
+    width: 40%;
   }
   .price,
-  .size {
-    width: 33%;
-  }
-  .quantity {
-    text-align: center;
-    width: 34%;
-  }
-  .quantity-field {
-    float: none;
-  }
-  .remove {
-    bottom: 0;
-    text-align: left;
-    margin-top: 0.75rem;
-    position: relative;
-  }
-  .remove button {
-    padding: 0;
-  }
-  .summary {
-    margin-top: 1.25rem;
-    position: relative;
-  }
-}
-
-
-@media screen and (min-width: 641px) and (max-width: 960px) {
-  aside {
-    padding: 0 1rem 0 0;
-  }
-  .summary {
-    width: 28%;
+  .size,
+  .mount {
+    width: 20%;
   }
 }
 

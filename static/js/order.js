@@ -1,12 +1,12 @@
+
 window.onload= () => {
   const payload = localStorage.getItem("payload");
   const payload_parse = JSON.parse(payload)
-  const email= payload_parse.email
-  console.log(email)
-}
+  const username= payload_parse.username
+  console.log(username)
 
-
-window.onload= () => {
+  const intro = document.getElementById("intro")
+  intro.innerText=payload_parse.username
   OrderList()
 }
 
@@ -14,13 +14,12 @@ async function OrderList(){
     const response = await fetch(`http://127.0.0.1:8000/order/cart/`, {
         method: 'GET', 
         headers:{
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5NzIwMzA5LCJpYXQiOjE2NjkzNjAzMDksImp0aSI6ImUwZTY3YzMzMWQxNjRjMzA4M2Q4YmE4ZTYwOGYxZGFmIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJhZG1pbiJ9.8htiU9mp8ZH5JUqC4-GSAEG6EAaAm1OviUV8lkC2rZw"
+         "Authorization" : localStorage.getItem("access")
         } 
     })
     console.log(response)
     const data = await response.json();
     console.log(data)
-    
     //이름 불러오기
 
     
@@ -33,33 +32,33 @@ async function OrderList(){
     //    newItem.innerText = element.title
     //    item.appendChild(newItem)
     // })
-
-     //사이즈 불러오기
-
-     const size = document.getElementById("size")
-
-     data.forEach(element =>{
-      console.log(element.size)
-       const newSize = document.createElement("div")
-       newSize.innerText = element.size
-       size.append(newSize)
-    })
-    //수량 불러오기
-    const mount = document.getElementById("mount")
-
-    data.forEach(element =>{
-      console.log(element.mount)
-       const newMount = document.createElement("div")
-       newMount.innerText = element.mount
-       mount.append(newMount)
-    })
-    //가격 불러오기
-    const price = document.getElementById("price")
-
-    data.forEach(element =>{
-      console.log(element.price)
-       const newPrice = document.createElement("div")
-       newPrice.innerText = element.price
-       price.append(newPrice)
-    })
+    const orderlist = document.getElementById("basket-product")
+    data.forEach(element => { 
+      const order = `<div class="basket-product"> 
+                      <div class="item">
+                        <div class="product-image">
+                          <img src="http://127.0.0.1:8000${element.article.image}" alt="이미지" class="product-frame">
+                           </div>
+                        </div>
+                        <div class="size" id="size">${element.size}</div>
+                        <div class="mount" id="mount">${element.mount}</div>
+                        <div class="price" id="price">${element.price}</div>
+                        </div>
+                      </div>
+                    `
+      orderlist.insertAdjacentHTML("beforeend",order)
+  });
 }
+
+
+async function OrderList2(){
+  console.log("실행")
+  const response = await fetch(`http://127.0.0.1:8000/order/cart/`, {
+      method: 'PUT', 
+      headers:{
+        "Authorization" : localStorage.getItem("access")
+      } 
+    })
+    console.log(response)
+    location.href='orderlist.html'
+  }

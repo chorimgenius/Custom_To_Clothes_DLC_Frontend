@@ -10,55 +10,21 @@
 </head>
 
 <body>
-    <div id="user"><h1>님 안녕하세요.</h1></div>
-    <button>장바구니</button> <button onclick="orderlist.html">구매목록</button>
+    <div id="intro"></div><h1>님 안녕하세요</h1>
+    <button>장바구니</button> <button onclick="location.href='orderlist.html'">구매목록</button>
 
     <main>
         <ul>
-          <li class="item item-heading"></li>
+          <li class="item">Item</li>
           <li class="size">Size</li>
           <li class="mount">Mount</li>
           <li class="price">Price</li>
         </ul>
-        <hr>
-      <div class="basket-product">
-        <div class="item">
-          <div class="product-image">
-            <img src="pocachip.JPG" alt="이미지" class="product-frame">
-          </div>
-        </div>
-        <div class="size" id="size"></div>
-        <div class="mount" id="mount"></div>
-        <div class="price" id="price"></div>
+      <div class="basket-product" id="basket-product">
       </div>
-      <hr>
     
-
-
-
-      <!-- <div class="basket-product">
-        <div class="item">
-          <div class="product-image">
-            <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
-          </div>
-          <div class="product-details">
-            <h1><strong><span class="item-quantity">1</span> x Whistles</strong> Amella Lace Midi Dress</h1>
-            <p><strong>Navy, Size 10</strong></p>
-            <p>Product Code - 232321939</p>
-          </div>
-        </div>
-        <div class="price">26.00</div>
-        <div class="quantity">
-          <input type="number" value="1" min="1" class="quantity-field">
-        </div>
-        <div class="subtotal">26.00</div>
-        <div class="remove">
-          <button>Remove</button>
-        </div>
-      </div>
-    </div> -->
   </main>
-  <button class="orderbutton">order</button>
+  <button onclick="OrderList2()">order</button>
 </body>
 
 </html>
