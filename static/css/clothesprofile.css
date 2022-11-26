@@ -261,3 +261,39 @@
 	text-transform: uppercase;
 	cursor: pointer;
 }
+
+.like-button {
+	color: #888;
+	font-size: 2em;
+	border: 2px solid 6px;
+	line-height: 1.5em;
+	box-shadow: 0 0.25em 1em -0.25em;
+	cursor: pointer;
+	transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+	margin: 0.5em 0;
+	border-color: white;
+	border-radius: 10px;
+	margin-left: 30px;
+	}
+	
+.like-button:hover {
+	color: indianred;
+	}
+	
+.like-button:active {
+	transform: scale(0.55);
+	}
+	
+.like-button.selected {
+	color: white;
+	background-color: red;
+	border-color: rgb(217, 17, 17);
+	}
+	
+.heart-icon {
+	display: inline-block;
+	fill: currentColor;
+	width: 0.8em;
+	height: 0.8em;
+	margin-right: 0.2em;
+	}
