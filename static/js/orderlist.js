@@ -11,27 +11,16 @@ window.onload= () => {
 }
 
 async function OrderList(){
-    const response = await fetch(`http://127.0.0.1:8000/order/cart/`, {
+    const response = await fetch(`http://127.0.0.1:8000/order/list/`, {
         method: 'GET', 
         headers:{
-         "Authorization" : localStorage.getItem("access")
+          "Authorization" : localStorage.getItem("access")
         } 
     })
     console.log(response)
     const data = await response.json();
     console.log(data)
-    //이름 불러오기
-
     
-    //이미지 불러오기
-    // const item = document.getElementById("item")
-
-    // data.forEach(element =>{
-    //   console.log(element.item)
-    //    const newItem = document.createElement("div")
-    //    newItem.innerText = element.title
-    //    item.appendChild(newItem)
-    // })
     const orderlist = document.getElementById("basket-product")
     data.forEach(element => { 
       const order = `<div class="basket-product"> 
@@ -43,22 +32,10 @@ async function OrderList(){
                         <div class="size" id="size">${element.size}</div>
                         <div class="mount" id="mount">${element.mount}</div>
                         <div class="price" id="price">${element.price}</div>
+                        <div class="price" id="status">${element.status}</div>
                         </div>
                       </div>
                     `
       orderlist.insertAdjacentHTML("beforeend",order)
   });
 }
-
-
-async function OrderList2(){
-  console.log("실행")
-  const response = await fetch(`http://127.0.0.1:8000/order/cart/`, {
-      method: 'PUT', 
-      headers:{
-        "Authorization" : localStorage.getItem("access")
-      } 
-    })
-    console.log(response)
-    location.href='orderlist.html'
-  }

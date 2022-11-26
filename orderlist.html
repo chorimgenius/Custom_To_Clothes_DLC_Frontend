@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="static/css/order.css" rel="stylesheet" type="text/css"/>
-  <title>Order</title>
+  <link href="static/css/orderlist.css" rel="stylesheet" type="text/css"/>
+  <title>Orderlist</title>
 </head>
 
 <body>
     <div id="intro"></div><h1>님 안녕하세요</h1>
-    <button>장바구니</button> <button onclick="location.href='orderlist.html'">구매목록</button>
+    <button onclick="location.href='order.html'">장바구니</button> <button onclick="orderlist.html">구매목록</button>
 
     <main>
         <ul>
@@ -19,13 +19,13 @@
           <li class="size">Size</li>
           <li class="mount">Mount</li>
           <li class="price">Price</li>
+          <li class="status">Status</li>
         </ul>
       <div class="basket-product" id="basket-product">
       </div>
     
   </main>
-  <button onclick="OrderList2()">order</button>
 </body>
 
 </html>
-<script src="static/js/order.js"></script>
+<script src="static/js/orderlist.js"></script>
