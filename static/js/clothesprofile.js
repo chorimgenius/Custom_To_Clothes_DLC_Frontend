@@ -1,4 +1,5 @@
-const backend_base_url = "http://127.0.0.1:8000"
+const backend_base_url = "http://127.0.0.1:8000/"
+let liked = false
 
 window.onload = async function loadArticles() {
     const urlStr = window.location.href;
@@ -6,12 +7,10 @@ window.onload = async function loadArticles() {
     const urlParms = url.searchParams;
     console.log(urlParms)
     const id = urlParms.get('id')
-    const response = await fetch(`${backend_base_url}/order/` + parseInt(id) + '/', {
+    const response = await fetch(`${backend_base_url}order/` + parseInt(id) + '/', {
         method: 'GET'
     })
     response_json = await response.json()
-    console.log(response_json)
-    console.log(response_json.image)
     const product_image = document.getElementById('product_image')
     product_image.src = `${backend_base_url}` + response_json.image
 }
@@ -25,7 +24,7 @@ async function postsize(){
     const size_size = document.getElementById('size').value
     const size_mount = document.getElementById('mount').value
 
-    const response = await fetch(`${backend_base_url}/order/` + parseInt(id) + '/', {
+    await fetch(`${backend_base_url}/order/` + parseInt(id) + '/', {
         method: 'POST',
         headers: {
             "Authorization" : localStorage.getItem("access"),
@@ -38,7 +37,6 @@ async function postsize(){
     })
     location.href="order.html"
 }
-
 
 $(document).ready(function () {
     $(".qtyminus").on("click", function () {
@@ -53,5 +51,36 @@ $(document).ready(function () {
         if ($.isNumeric(now)) {
             $(".qty").val(parseInt(now) + 1);
         }
+    });
+});
+
+async function postLike() {
+    const urlStr = window.location.href;
+    const url = new URL(urlStr);
+    const urlParams = url.searchParams;
+    const id = urlParams.get('id')
+
+    if(!liked){
+        liked = true
+        
+    }else{
+        liked = false
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const urlStr = window.location.href;
+    const url = new URL(urlStr);
+    const urlParams = url.searchParams;
+    const id = urlParams.get('id')
+    const likeButton = document.querySelector('.like-button');
+    likeButton.addEventListener('click', () => { 
+        fetch('http://127.0.0.1:8000/' +parseInt(id) +'/like/',{
+            headers:{
+                'Authorization':localStorage.getItem("access")},
+            method :'POST',
+        })   
+        likeButton.classList.toggle('selected');
     });
 });
