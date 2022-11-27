@@ -1,6 +1,6 @@
 // html js
 // javascripts interlock
-const backend_base_url = "http://127.0.0.1:8000"
+const backend_base_url = "http://43.200.4.144:8000"
 //Signup
 async function handleSignup(){
 	const username = document.getElementById("sign-username").value

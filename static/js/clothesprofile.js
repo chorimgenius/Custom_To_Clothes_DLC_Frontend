@@ -1,4 +1,4 @@
-const backend_base_url = "http://127.0.0.1:8000/"
+const backend_base_url = "http://43.200.4.144:8000/"
 let liked = false
 
 window.onload = async function loadArticles() {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const id = urlParams.get('id')
     const likeButton = document.querySelector('.like-button');
     likeButton.addEventListener('click', () => { 
-        fetch('http://127.0.0.1:8000/' +parseInt(id) +'/like/',{
+        fetch('http://43.200.4.144:8000/' +parseInt(id) +'/like/',{
             headers:{
                 'Authorization':localStorage.getItem("access")},
             method :'POST',
@@ -82,3 +82,15 @@ document.addEventListener('DOMContentLoaded', function() {
         likeButton.classList.toggle('selected');
     });
 });
+
+async function handleLogout(){
+	localStorage.removeItem("access")
+	localStorage.removeItem("refresh")
+	localStorage.removeItem("payload")
+	alert("로그아웃되었습니다.")
+	location.href = "signup.html"
+}
+
+function handleHome(){
+    location.href="main.html"
+  }

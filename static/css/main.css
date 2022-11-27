@@ -1,8 +1,10 @@
-/* body {
-    padding: 5%;
-} */
+body {
+    margin: 0 auto;
+    width: 60vw;
+}
 
 .user_flex {
+    margin-top: 20px;
     display: flex;
 }
 
@@ -12,12 +14,11 @@
 }
 
 .user_label {
-    padding-left: 120px;
     font-size: 30px;
 }
 
 .rank_label {
-    padding-left: 120px;
+    
     font-size: 30px;
     padding-bottom: 30px;
 }
@@ -27,6 +28,14 @@
     justify-content: center;
     gap: 20px 3%;
     flex-wrap: wrap;
+}
+
+.container-article {
+    display: flex;
+    justify-content: left;
+    gap: 20px 3%;
+    flex-wrap: wrap;
+    padding-left: 30px;
 }
 
 .like {
@@ -52,6 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 50px;
 
 }
 
