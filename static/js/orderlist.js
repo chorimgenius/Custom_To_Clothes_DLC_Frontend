@@ -10,7 +10,7 @@ window.onload= () => {
 }
 
 async function OrderList(){
-    const response = await fetch(`http://127.0.0.1:8000/order/list/`, {
+    const response = await fetch(`http://43.200.4.144:8000/order/list/`, {
         method: 'GET', 
         headers:{
           "Authorization" : localStorage.getItem("access")
@@ -23,16 +23,20 @@ async function OrderList(){
       const order = `<div class="basket-product"> 
                       <div class="item">
                         <div class="product-image">
-                          <img src="http://127.0.0.1:8000${element.article.image}" alt="이미지" class="product-frame">
+                          <img src="http://43.200.4.144:8000${element.article.image}" alt="이미지" class="product-frame">
                            </div>
                         </div>
                         <div class="size" id="size">${element.size}</div>
                         <div class="mount" id="mount">${element.mount}</div>
-                        <div class="price" id="price">${element.price}</div>
-                        <div class="price" id="status">${element.status}</div>
+                        <div class="price" id="price">${element.price *= element.mount}</div>
+                        <div class="price" id="status">주문완료</div>
                         </div>
                       </div>
                     `
       orderlist.insertAdjacentHTML("beforeend",order)
   });
+}
+
+function handleHome(){
+  location.href="main.html"
 }

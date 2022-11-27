@@ -11,7 +11,7 @@
     <div class="container">
         <div class="container-nav">
             <div class="logo">
-                <img class="logo" src="https://velog.velcdn.com/images/marinred/post/fb9e4071-a58a-4f2c-9f36-48b61030521f/image.png" alt="Nour Homsi Logo">
+                <img class="logo" onclick="handleHome()" src="https://velog.velcdn.com/images/marinred/post/fb9e4071-a58a-4f2c-9f36-48b61030521f/image.png" alt="Nour Homsi Logo">
             </div>
             <div class="nav-bar">
                 <ul>
@@ -24,21 +24,22 @@
         </div>
 </header>
 <body>
+    
     <section class="label">
         <div class="user_flex">
             <div class="user_label" id="username"></div>
             <p> 님 환영합니다.</p>
-        </div>
-        <div class="wrap">
-            <button class="button" onclick="location.href='article.html'">커스텀제작</button>
         </div>
         <div class="rank_flex">
             <div class="rank_label">
                 순위표
             </div>
         </div>
+        <div class="wrap">
+            <button class="button" onclick="location.href='article.html'">커스텀제작</button>
+        </div>
     </section>
-    <section class="container" id="container">
+    <section class="container-article" id="container">
     </section>
 </body>
 </html>

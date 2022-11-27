@@ -1,4 +1,4 @@
-const backend_base_url = "http://127.0.0.1:8000"
+const backend_base_url = "http://43.200.4.144:8000"
 
 window.onload= () => {
     ProfilePage()
@@ -19,11 +19,15 @@ async function ProfilePage(){
     })
     response_json = await response.json()
     const img = document.getElementById('container')
-
+    
     response_json.forEach(element => {
         const image = ` <div class="item">
-                            <img class="image" src="http://127.0.0.1:8000${element.image}">
+                            <img class="image" src="http://43.200.4.144:8000${element.image}">
                         </div>`
         img.insertAdjacentHTML("beforeend",image)
     })
 }
+
+function handleHome(){
+    location.href="main.html"
+  }

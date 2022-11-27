@@ -1,4 +1,4 @@
-const backend_base_url = "http://127.0.0.1:8000"
+const backend_base_url = "http://43.200.4.144:8000"
 
 window.onload= () => {
     MainPage()
@@ -24,7 +24,7 @@ async function MainPage(){
                             <div class ="like">
                                 ${element.likes_count} likes
                             </div>
-                            <img class="image" src="http://127.0.0.1:8000${element.image}">
+                            <img class="image" src="http://43.200.4.144:8000${element.image}">
                         </div>`
         img.insertAdjacentHTML("beforeend",image)
     });
@@ -37,3 +37,7 @@ async function handleLogout(){
 	alert("로그아웃되었습니다.")
 	location.href = "signup.html"
 }
+
+function handleHome(){
+    location.href="main.html"
+  }
