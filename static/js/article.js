@@ -125,5 +125,17 @@ async function put_article(){
   $('#result-container').show()
 }
 function order(){
-location.href = "clothesprofile.html?id="+selected_article_id;
+  location.href = "clothesprofile.html?id="+selected_article_id;
+}
+
+async function handleLogout(){
+	localStorage.removeItem("access")
+	localStorage.removeItem("refresh")
+	localStorage.removeItem("payload")
+	alert("로그아웃되었습니다.")
+	location.href = "signup.html"
+}
+
+function handleHome(){
+    location.href="main.html"
 }
