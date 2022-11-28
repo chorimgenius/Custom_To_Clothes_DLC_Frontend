@@ -1,12 +1,18 @@
-html, body {
-    width: 100%;
-    height: 100%;
+body {
+    width: 60vw;
+    margin: 0 auto;
   }
+  .container-article {
+    display: flex;
+    justify-content: center;
+    gap: 20px 3%;
+    flex-wrap: wrap;
+}
   
   .container {
     padding: 75px 0;
     margin: 0 auto;
-    width: 1140px;
+    width: 100%;
   }
   
   h1 {
@@ -29,8 +35,16 @@ html, body {
     flex: 1;
     height: 100%;
     background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: flex 0.8s ease;
+  }
+  .item-style {
+    flex: 1;
+    height: 100%;
+    background-position: center;
     background-size: cover;
-    background-repeat: none;
+    background-repeat: no-repeat;
     transition: flex 0.8s ease;
   }
   .item-result {
@@ -38,11 +52,14 @@ html, body {
     height: 100%;
     background-position: center;
     background-size: cover;
-    background-repeat: none;
+    background-repeat: no-repeat;
     transition: flex 0.8s ease;
   }
   .item:hover {
-    flex: 7;
+    flex: 5;
+  }
+  .item-style:hover {
+    flex: 5;
   }
   
   .item-1 {
@@ -118,4 +135,29 @@ html, body {
 a {
     color: white;
     text-decoration: none;
+}
+
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #347ce9;
+  box-shadow: 0px 15px 20px rgba(2, 157, 247, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }

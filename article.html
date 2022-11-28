@@ -15,6 +15,23 @@
     <link href="static/css/article.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
 </head>
+<header>
+    <div class="container-article">
+        <div class="container-nav">
+            <div class="logo">
+                <img class="logo" onclick="handleHome()" src="https://velog.velcdn.com/images/marinred/post/fb9e4071-a58a-4f2c-9f36-48b61030521f/image.png" alt="Nour Homsi Logo">
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="order.html">Cart</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a onclick="handleLogout()">Logout</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</header>
 <body>
     <div class="container" id="draft-container">
         <h1>Draft</h1>
@@ -32,29 +49,29 @@
           <input style="margin-bottom: 20px;" type="file" class="image-upload" accept="image/*" />
         </div>
         <div class="gallery-wrap">
-            <div class="item item-1" id="style-id1" onclick="select_style(1)"></div>
-            <div class="item item-2" id="style-id2" onclick="select_style(2)"></div>
-            <div class="item item-3" id="style-id3" onclick="select_style(3)"></div>
-            <div class="item item-4" id="style-id4" onclick="select_style(4)"></div>
-            <div class="item item-5" id="style-id5" onclick="select_style(5)"></div>
+            <div class="item-style item-1" id="style-id1" onclick="select_style(1)"></div>
+            <div class="item-style item-2" id="style-id2" onclick="select_style(2)"></div>
+            <div class="item-style item-3" id="style-id3" onclick="select_style(3)"></div>
+            <div class="item-style item-4" id="style-id4" onclick="select_style(4)"></div>
+            <div class="item-style item-5" id="style-id5" onclick="select_style(5)"></div>
         </div>
     </div>
     <div class="container" id="selected-container" style="display:none;">
       <h1>Create</h1>
       <div class="gallery-wrap">
-          <div class="item item-1" id = "draft-selected" onclick="re_post_article()"></div>
-          <div class="item item-2" id = "style-selected" onclick="re_post_article()"></div>
+          <div class="item-result item-1" id = "draft-selected" onclick="re_post_article()"></div>
+          <div class="item-result item-2" id = "style-selected" onclick="re_post_article()"></div>
       </div>
-      <button type="button" style="margin-top: 20px;" id="create-article" onclick="post_article()">만들기</button>
-      <button type="button" id="put-article" onclick="put_article()" style="display:none;">다시만들기</button>
+      <button type="button" class="button" style="margin-top: 20px;" id="create-article" onclick="post_article()">만들기</button>
+      <button type="button" class="button" id="put-article" onclick="put_article()" style="display:none;">다시만들기</button>
     </div>
     <div class="container" id="result-container" style="display:none">
       <h1>Result</h1>
       <div class="gallery-wrap" style="justify-content: center;">
           <div class="item-result item-1" id = "result-image"></div>
       </div>
-      <button type="button" onclick="re_post_article()">다시만들기</button>
-      <button type="button" onclick="order()">주문하러 가기</button>
+      <button type="button" class="button" onclick="re_post_article()">다시만들기</button>
+      <button type="button" class="button" onclick="order()">주문하러 가기</button>
     </div>
     
 </body>
