@@ -24,7 +24,9 @@ async function MainPage(){
                             <div class ="like">
                                 ${element.likes_count} likes
                             </div>
-                            <img class="image" src="http://43.200.4.144:8000${element.image}">
+                            <a href="http://43.200.4.144:8000/clothesprofile.html?id=${element.id}">
+                                <img class="image" src="http://43.200.4.144:8000${element.image}">
+                            </a>
                         </div>`
         img.insertAdjacentHTML("beforeend",image)
     });
